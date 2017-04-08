@@ -17,7 +17,6 @@ public class TimerSystem : MonoBehaviour
     public int WallCompaction;
     public bool MapAlteration;
     public float trueStartTime;
-
     public AudioManager audman;
     private void Awake()
     {
