@@ -10,6 +10,7 @@ public class Shrine : MonoBehaviour
 
     public int newCaptureSpeed = 2;
     public float bumpShieldDuration = 10f;
+    public AudioClip bonus;
 
     public UIPlayers playersUI;
 
@@ -51,6 +52,8 @@ public class Shrine : MonoBehaviour
                 default:
                     break;
             }
+            other.gameObject.GetComponent<AudioSource>().clip = bonus;
+            other.gameObject.GetComponent<AudioSource>().Play();
             DesactivateShrine();
         }
     }

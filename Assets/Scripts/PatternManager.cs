@@ -518,5 +518,6 @@ public class PatternManager : MonoBehaviour
         {
             s.Flash();
         }
+        slots[0].owner.GetComponent<AudioSource>().clip = null;
     }
 }
