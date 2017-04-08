@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class EventSystemXboxDPadInputs : MonoBehaviour
 {
@@ -19,9 +20,15 @@ public class EventSystemXboxDPadInputs : MonoBehaviour
     public string aButton;
 
     public GameObject buttons;
-    
+
     void Update()
     {
+        if (currentButton == null && buttons != null) {
+            currentButton = buttons.transform.GetChild(0).gameObject;
+            Debug.Log(buttons.transform.GetChild(0).gameObject);
+        }
+
+
         currentButton = EventSystem.current.currentSelectedGameObject;
         Text buttonText = currentButton.transform.GetChild(0).GetComponent<Text>();
         buttonText.color = selectedColor;
@@ -30,6 +37,16 @@ public class EventSystemXboxDPadInputs : MonoBehaviour
         {
             currentButton = EventSystem.current.currentSelectedGameObject;
             buttonText.color = clickedColor;
+
+            string sceneName = currentButton.GetComponent<linkscene>().sceneName;
+            if (sceneName == "Quit")
+            {
+                Application.Quit();
+            }
+            else
+            {
+                SceneManager.LoadScene(sceneName);
+            }
         }
         else {
             if (timer == 0)
