@@ -30,7 +30,7 @@ public class PatternManager : MonoBehaviour
     public bool cleaningNeeded;
     public float timeOfLock;
     public AudioManager audman;
-
+    public AudioClip patternCaptured;
     // Check Pattern
 
     public void CheckForPattern(ref List<Slot> slots)
@@ -518,6 +518,7 @@ public class PatternManager : MonoBehaviour
         {
             s.Flash();
         }
-        slots[0].owner.GetComponent<AudioSource>().clip = null;
+        slots[0].owner.GetComponent<AudioSource>().clip = patternCaptured;
+        slots[0].owner.GetComponent<AudioSource>().Play();
     }
 }
