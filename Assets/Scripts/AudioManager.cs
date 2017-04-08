@@ -6,69 +6,55 @@ public class AudioManager : MonoBehaviour {
 
     public AudioClip[] audioclips;
     private AudioSource audsrc;
+    private bool isLocked;
 	// Use this for initialization
+
 	void Start () {
         audsrc = GetComponent<AudioSource>();
+        isLocked = false;
 	}
 	
     public void PlayPatternStart()
     {
-        audsrc.clip = audioclips[1];
-        audsrc.Play();
+        if (!isLocked) StartCoroutine(AudioCoroutine(1));
     }
     public void PlaySeize()
     {
-        audsrc.clip = audioclips[2];
-        audsrc.Play();
-        while (audsrc.isPlaying)
-        {
-
-        }
-        audsrc.clip = audioclips[3];
-        audsrc.Play();
+        if (!isLocked) StartCoroutine(AudioCoroutine(3));
     }
     public void PlayExpand()
     {
-        audsrc.clip = audioclips[2];
-        audsrc.Play();
-        while(audsrc.isPlaying)
-        {
+        if (!isLocked) StartCoroutine(AudioCoroutine(4));
 
-        }
-        audsrc.clip = audioclips[4];
-        audsrc.Play();
     }
     public void PlayDefrag()
     {
-        audsrc.clip = audioclips[2];
-        audsrc.Play();
-        while (audsrc.isPlaying)
-        {
+        if (!isLocked) StartCoroutine(AudioCoroutine(5));
 
-        }
-        audsrc.clip = audioclips[5];
-        audsrc.Play();
     }
     public void PlayIsolate()
     {
-        audsrc.clip = audioclips[2];
-        audsrc.Play();
-        while (audsrc.isPlaying)
-        {
+        if (!isLocked) StartCoroutine(AudioCoroutine(6));
 
-        }
-        audsrc.clip = audioclips[6];
-        audsrc.Play();
     }
 
     public void PlayGameEndWarning()
     {
-        audsrc.clip = audioclips[7];
-        audsrc.Play();
+        if (!isLocked) StartCoroutine(AudioCoroutine(7));
+
     }
     public void PlayGameEnd()
     {
-        audsrc.clip = audioclips[8];
+        if (!isLocked) StartCoroutine(AudioCoroutine(8));
+
+    }
+
+    IEnumerator AudioCoroutine(int id)
+    {
+        isLocked = true;
+        audsrc.clip = audioclips[id];
         audsrc.Play();
+        yield return new WaitForSeconds(1.5f);
+        isLocked = false;
     }
 }

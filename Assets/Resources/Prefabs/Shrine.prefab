@@ -126,6 +126,7 @@ MonoBehaviour:
   activated: 0
   newCaptureSpeed: 2
   bumpShieldDuration: 10
+  bonus: {fileID: 8300000, guid: 383debfb8e764794d96816b9f18b4b86, type: 3}
   playersUI: {fileID: 0}
 --- !u!198 &198846799614391132
 ParticleSystem:

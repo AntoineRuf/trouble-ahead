@@ -18,6 +18,7 @@ public class TimerSystem : MonoBehaviour
     public bool MapAlteration;
     public float trueStartTime;
 
+    public AudioManager audman;
     private void Awake()
     {
         MapAlteration = false;
@@ -33,6 +34,7 @@ public class TimerSystem : MonoBehaviour
         {
             timerDone = true;
             TimerGUI.text = "";
+            audman.GetComponent<AudioManager>().PlayGameEnd();
             FindObjectOfType<ScoreManager>().TallyScores();
             FindObjectOfType<ScoreManager>().BestPlayer();
         }
@@ -45,6 +47,7 @@ public class TimerSystem : MonoBehaviour
                 GetComponent<PatternManager>().currentpattern = (PatternManager.PatternType)Randform();
                 pui.UIUpdate(GetComponent<PatternManager>().currentpattern);
                 Debug.Log("Pattern time in progress");
+                audman.GetComponent<AudioManager>().PlayPatternStart();
             }
             else if ((CastedTime % 10 == 0 && CastedTime % 20 != 0 && patternInProgress) || GetComponent<PatternManager>().cleaningNeeded)
             {

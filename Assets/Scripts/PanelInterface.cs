@@ -26,7 +26,7 @@ public class PanelInterface : MonoBehaviour
     //public Image patternimage;
     public Text patternText;
     public Color transparent;
-
+    public AudioManager audman;
     public TetronimoDisplay display;
 
     void Awake()

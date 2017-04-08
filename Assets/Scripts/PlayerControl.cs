@@ -11,10 +11,10 @@ public class PlayerControl : MonoBehaviour
     public float bumpCoolDown;
     public float lastBumpTime;
     public Bump bump;
-
+    public AudioClip boop;
     private Vector3 turnVector;
     public float turnSpeed = 5.0f;
-
+    
 
     internal void SetAxisName(int id)
     {
@@ -88,7 +88,8 @@ public class PlayerControl : MonoBehaviour
             {
                 lastBumpTime = Time.time;
                 bump.TriggerBump();
-
+                GetComponent<AudioSource>().clip = boop;
+                GetComponent<AudioSource>().Play();
                 cooldown1.GetComponent<MeshRenderer>().materials[1].SetColor("_EmissionColor", Color.black);
                 cooldown2.GetComponent<MeshRenderer>().materials[1].SetColor("_EmissionColor", Color.black);
             }
