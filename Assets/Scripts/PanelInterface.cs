@@ -108,7 +108,7 @@ public class PanelInterface : MonoBehaviour
                 matrix[1, 0] = 1;
                 matrix[1, 1] = 1;
                 matrix[1, 2] = 1;
-                matrix[2, 0] = 1;
+                matrix[0, 2] = 1;
                 //patternimage.GetComponent<Image>().sprite = onehundredeightyLsprite;
                 break;
             case (PatternManager.PatternType.twohundredseventyL):
