@@ -15,7 +15,7 @@ public class WallManager : MonoBehaviour {
 
     public float timeToScale;
     public int timesscaled = 0;
-
+    public AudioManager audman;
     public void AlterMap()
     {
         timesscaled++;
@@ -91,6 +91,7 @@ public class WallManager : MonoBehaviour {
                 }
                 else if (timesscaled == 7)
                 {
+                    audman.GetComponent<AudioManager>().PlayGameEndWarning();
                     ExternalWallLeft.transform.localScale = Vector3.Lerp(originalLeftExternScale, new Vector3(12.0f, 0.001f, 0.3f), currentTime / timeToScale);
                     ExternalWallRight.transform.localScale = Vector3.Lerp(originalRightExternScale, new Vector3(12.0f, 0.001f, 0.3f), currentTime / timeToScale);
                     ExternalWallUp.transform.localScale = Vector3.Lerp(originalUpExternScale, new Vector3(12.0f, 0.001f, 0.3f), currentTime / timeToScale);

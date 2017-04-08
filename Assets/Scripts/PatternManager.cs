@@ -29,7 +29,7 @@ public class PatternManager : MonoBehaviour
     public PatternType currentpattern;
     public bool cleaningNeeded;
     public float timeOfLock;
-
+    public AudioManager audman;
 
     // Check Pattern
 
@@ -418,7 +418,8 @@ public class PatternManager : MonoBehaviour
 
     void HorIsMine(List<Slot> slots)
     {
-        GameObject.Find("Console").GetComponent<Console>().UseConsole("Pattern Exploited. Code : Vertical Yield.");
+        audman.GetComponent<AudioManager>().PlaySeize();
+        GameObject.Find("Console").GetComponent<Console>().UseConsole("Pattern Exploited. Code : Vertical Seize.");
         List<Slot> mapSlots = new List<Slot>(GetComponentsInChildren<Slot>());
         List<Slot> horSlots = new List<Slot>();
         horSlots.AddRange(mapSlots.FindAll(s => s.y == slots[0].y));
@@ -433,7 +434,8 @@ public class PatternManager : MonoBehaviour
 
     void VertIsMine(List<Slot> slots)
     {
-        GameObject.Find("Console").GetComponent<Console>().UseConsole("Pattern Exploited. Code : Horizontal Yield.");
+        audman.GetComponent<AudioManager>().PlaySeize();
+        GameObject.Find("Console").GetComponent<Console>().UseConsole("Pattern Exploited. Code : Horizontal Seize.");
         List<Slot> mapSlots = new List<Slot>(GetComponentsInChildren<Slot>());
         List<Slot> vertSlots = new List<Slot>();
         vertSlots.AddRange(mapSlots.FindAll(s => s.x == slots[0].x));
@@ -448,6 +450,7 @@ public class PatternManager : MonoBehaviour
 
     void Burst(List<Slot> slots)
     {
+        audman.GetComponent<AudioManager>().PlayExpand();
         GameObject.Find("Console").GetComponent<Console>().UseConsole("Pattern Exploited. Code : Expand.");
         List<Slot> mapSlots = new List<Slot>(GetComponentsInChildren<Slot>());
         List<Slot> adjacentSlots = new List<Slot>();
@@ -466,6 +469,7 @@ public class PatternManager : MonoBehaviour
 
     void Defrag(List<Slot> slots)
     {
+        audman.GetComponent<AudioManager>().PlayDefrag();
         GameObject.Find("Console").GetComponent<Console>().UseConsole("Pattern Exploited. Code : Defrag.");
         List<Slot> mapSlots = new List<Slot>(GetComponentsInChildren<Slot>());
         List<Slot> adjacentSlots = new List<Slot>();
@@ -484,6 +488,7 @@ public class PatternManager : MonoBehaviour
 
     void Lock(List<Slot> slots)
     {
+        audman.GetComponent<AudioManager>().PlayIsolate();
         GameObject.Find("Console").GetComponent<Console>().UseConsole("Pattern Exploited. Code : Isolate.");
         foreach (Slot slot in slots)
         {
